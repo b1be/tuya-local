@@ -45,7 +45,7 @@ class TestWilfaHazeHumidifier(
         self.setUpForConfig(
             "wilfa_haze_hu400bc_humidifier.yaml", WILFA_HAZE_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.fan = self.entities.get("fan")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
@@ -102,7 +102,7 @@ class TestWilfaHazeHumidifier(
             [
                 {
                     "dps": CURRENTTEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                     "unit": UnitOfTemperature.CELSIUS,
@@ -139,6 +139,7 @@ class TestWilfaHazeHumidifier(
                 "light_mood",
                 "select_temperature_unit",
                 "select_timer",
+                "sensor_current_humidity",
                 "switch_air_clean",
                 "switch_ionizer",
                 "switch_sound",

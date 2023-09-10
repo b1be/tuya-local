@@ -228,6 +228,7 @@ async def test_flow_user_init(hass):
         "step_id": "user",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -379,6 +380,7 @@ async def test_flow_select_type_init(mock_device, hass):
         "step_id": "select_type",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -443,6 +445,7 @@ async def test_flow_choose_entities_init(hass):
         "step_id": "choose_entities",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -484,7 +487,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 12,
+            "version": 13,
             "context": {"source": "choose_entities"},
             "type": "create_entry",
             "flow_id": ANY,
@@ -512,7 +515,7 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -551,7 +554,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -560,7 +563,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
-            CONF_TYPE: "kogan_kahtp_heater",
+            CONF_TYPE: "ble_pt216_temp_humidity",
             CONF_DEVICE_CID: "subdeviceid",
         },
     )
@@ -601,7 +604,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -641,7 +644,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -669,7 +672,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
